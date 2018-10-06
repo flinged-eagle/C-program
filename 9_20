@@ -51,14 +51,9 @@ int main()
 	for(i=9 ; i<100 ; i+=10)
 	{
 		if(i%10==9)
-		{
-			count++;
-			if(i/9==0)
-			{
-				count++;
-			}
-		}
-
+		count++;
+		if(i/10==9)
+		count++;
 	}
 	printf("%d\n",count);
 	system("pause");
