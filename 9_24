@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<math.h>
+//打印菱形
+int main()
+{
+	int i=0, j=0,n=7;
+
+    for(i=1; i<=n; i++) {
+        for(j=1; j<=n-i; j++)
+            printf(" ");
+        for(j=1; j<=2*i-1; j++)
+            printf("*");
+        printf("\n");
+    }
+    for(i=1; i<=n-1; i++) {
+        for(j=0; j<i; j++)
+            printf(" ");
+        for(j=0; j<2*n-1-2*i; j++)
+            printf("*");
+        printf("\n");
+    }
+	system("pause");
+	return 0;
+
+}
+
+//找出水仙花数
+int main()
+{
+	int a=0,b=0,c=0;
+	for(a=1 ; a<10 ; a++)
+		for(b=0 ; b<10 ;b++)
+			for(c=0 ; c<10 ; c++)
+				if(a*100+b*10+c == pow(a,3) + pow(b,3) + pow(c,3))
+					printf("%d\t",a*100+b*10+c);
+	system("pause");
+	return 0;
+}
