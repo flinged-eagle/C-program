@@ -1,0 +1,109 @@
+//结构体数组并和排序
+
+#include<stdio.h>
+
+
+typedef struct{
+	int data[50];
+	int length;	
+}SqList,*pSqList;                    //定义SqList这个数据类型
+
+
+void creat(pSqList L);					//初始化表
+void enosis(pSqList L1,pSqList L2);		//无序并
+void show(SqList L);					//输出	
+void sort(pSqList L2,pSqList L_sum);	//排序
+
+
+int main()
+{
+	SqList L1;
+	SqList L2;
+	SqList L_sum;
+
+	L1.length = 0;				//初始化线性表的长度为0
+	creat(&L1);
+	L_sum = L1;
+	L2.length = 0;
+	creat(&L2);
+	show(L1);
+	show(L2);
+	enosis(&L1,&L2);			//无序合并
+	show(L1);  
+	sort(&L2,&L_sum);			//排序
+	show(L_sum);
+	system("pause");
+	return 0;
+}
+
+
+void creat(pSqList L)
+{
+	int a = 0;
+	int i = 0;
+	printf("请输入你创建元素的个数：>\n");
+	scanf("%d",&a);
+	for( i=0 ; i<a ; i++)
+	{
+		printf("请输入第%d个元素\n",i+1);
+		scanf("%d",&L->data[i]);
+		L->length++;
+	}
+	
+}
+
+
+void enosis(pSqList L1,pSqList L2)
+{
+	int i = 0;
+	int j = 0;
+	int tmp = 1;
+	for(j=0 ; j<L2->length ; j++)
+	{
+		for(i=0 ; i<L1->length ; i++)
+			if(L2->data[j] == L1->data[i]){
+				tmp = -1;
+				break;
+			}
+		if(tmp != -1)
+		{	
+			L1->data[L1->length] = L2->data[j];
+			L1->length++;
+		}
+		tmp = 1;
+	}
+}
+void show(SqList L)
+{
+	int i = 0;
+	for(i=0 ; i<L.length ; i++)
+	{
+		printf("%d  ",L.data[i]);
+	
+	}
+	//printf("\n%d",L.length);
+	printf("\n");
+
+}
+void sort(pSqList L2,pSqList L_sum)
+{
+	int i = 0, j = 0, temp = 0;
+	enosis(L_sum,L2);                             
+	//类似数组排序
+    for(i = 0; i < L_sum->length; ++i){
+
+        for(j = i + 1; j < L_sum->length; ++j){
+
+			if(L_sum->data[j] < L_sum->data[i]){    //如果后一个元素小于前一个元素则交换
+
+                temp = L_sum->data[i];
+
+                L_sum->data[i] = L_sum->data[j];
+
+                L_sum->data[j] = temp;
+
+            }
+
+        }
+    }
+}
