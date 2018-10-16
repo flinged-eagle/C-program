@@ -36,3 +36,10 @@ Learn for C Programming Language
 递归方式实现打印一个整数的每一位 
 
 
+game1   简单三子棋
+
+game2  
+扫雷 
+1>第一次下子，不炸死。 
+2>坐标周围没雷，可以实现展开
+
