@@ -14,6 +14,7 @@
 #include<time.h>
 
 void game();
+int Is_Win(char arr[ROWS][COLS], int row, int col);
 void Init(char arr[ROWS][COLS], int rows, int cols, char set);
 void show(char arr[ROWS][COLS], int rows, int cols);
 void GetMine(char arr[ROWS][COLS], int rows, int cols, int scale);

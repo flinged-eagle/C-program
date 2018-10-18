@@ -13,7 +13,7 @@ void game()
 	//show(Mine_Plate,ROWS,COLS);
 	show(Show_Plate,ROWS,COLS);
 	GetMine(Mine_Plate,ROWS,COLS,EASY_CONDITION);
-	show(Mine_Plate,ROWS,COLS);
+	//show(Mine_Plate,ROWS,COLS);
 	FindMine(Mine_Plate,Show_Plate,ROW,COL);
 }
 
@@ -175,7 +175,21 @@ void Unwrap_Left(char arr1[ROWS][COLS], char arr2[ROWS][COLS], int x, int y)
 //			}		*/
 //}
 
+int Is_Win(char arr[ROWS][COLS], int row, int col)
+{
+	int i = 0;
+	int j = 0;
+	int ret = 0;
 
+	for(i=1; i<row-1; i++)
+		for(j=1; j<col-1; j++)
+			if(arr[i][j] == '*')
+				ret++;
+	if(ret == EASY_CONDITION)
+		return 1;
+	return 0;
+
+}
 
 
 void FindMine(char arr1[ROWS][COLS],char arr2[ROWS][COLS], int row, int col)
@@ -187,7 +201,7 @@ void FindMine(char arr1[ROWS][COLS],char arr2[ROWS][COLS], int row, int col)
 	char sum = '0';
 	int	count = row*col-EASY_CONDITION;
 
-	while(count)
+	while(!Is_Win(arr2,ROWS,COLS))
 	{
 		sum = '0';
 
@@ -214,7 +228,7 @@ void FindMine(char arr1[ROWS][COLS],char arr2[ROWS][COLS], int row, int col)
 		}
 		else
 		{
-			//system("cls");
+			system("cls");
 			if(arr1[x][y] == '1')
 			{
 				break;
@@ -236,13 +250,13 @@ void FindMine(char arr1[ROWS][COLS],char arr2[ROWS][COLS], int row, int col)
 		}
 	}
 
-	if(count>0)
+	if(Is_Win(arr2,ROWS,COLS))
 	{
-		printf("你输了!\n");
+		printf("你赢了!\n");
 	}
 	else
 	{
-		printf("你赢了!\n");
+		printf("你输了!\n");
 	}
 	show(arr1,ROWS,COLS);
 }
